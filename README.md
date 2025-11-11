@@ -104,16 +104,15 @@ Each device-specific directory will contain:
 
 ## 5. Docs (extra files)
 
-The [`extra-files/`](./docs/) directory is intended for assets that complement the homelab documentation, such as:
+The [`docs/`](./docs/) directory is intended for assets that complement the homelab documentation, such as:
 
 - **3D models (STL)** for custom patch panels and rack accessories.
 - Any auxiliary diagrams, templates, or scripts that are not strictly configuration but are relevant to the physical build.
+- Referenced pictures/photos.
 
 ---
 
 ## 6. License
 
-To be decided.
-
-For now, configuration examples and files are shared for **educational and portfolio** purposes only.  
+Configuration examples and files are shared for **educational and portfolio** purposes only.  
 Do **not** copy them directly into production environments without proper review and hardening.
