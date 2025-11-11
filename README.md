@@ -4,7 +4,7 @@ This repository documents the core rack of my personal homelab: a compact, low-p
 
 The goal is to keep a clean, versioned record of the network and host configurations and use this project as a portfolio-ready example of my networking and virtualization skills.
 
-> **Scope:** This repo focuses on the **core infrastructure** (router, switch, hypervisor, backup server, and monitoring node on the Raspberry Pi).  
+> **Scope:** This repo focuses on the **core infrastructure** (router, switch, hypervisor, backup server, and monitoring node on the Raspberry Pi). 
 > Any **security testing, vulnerability analysis, or offensive security labs** will live in **separate repositories** that reference this one as the base environment.
 
 ---
