@@ -91,8 +91,6 @@ homelab-core-rack/
 │   └── README.md                   # Alpine services, backup strategies, mounts
 ├── server-rpi3bplus-dietpi/
 │   └── README.md                   # Monitoring stack and DietPi configuration
-├── extra-files/
-│   └── patch-panels/               # STL models and auxiliary design files
 └── .gitignore
 ```
 
@@ -104,9 +102,9 @@ Each device-specific directory will contain:
 
 ---
 
-## 5. Extra Files
+## 5. Docs (extra files)
 
-The [`extra-files/`](./extra-files/) directory is intended for assets that complement the homelab documentation, such as:
+The [`extra-files/`](./docs/) directory is intended for assets that complement the homelab documentation, such as:
 
 - **3D models (STL)** for custom patch panels and rack accessories.
 - Any auxiliary diagrams, templates, or scripts that are not strictly configuration but are relevant to the physical build.
