@@ -30,7 +30,7 @@ The rack uses structured cabling based on **Cat 6**:
 - Patch panels and keystone terminations use **Cat 6-rated jacks**.
 - All copper runs are terminated using the **TIA/EIA-568B** wiring standard.
 
-The STL models for the custom patch panels used in this rack are stored in the [`extra-files/`](./extra-files/) directory.
+The STL models for the custom patch panels used in this rack are stored in the [`docs/`](./docs/) directory.
 
 ---
 
