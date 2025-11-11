@@ -86,9 +86,9 @@ homelab-core-rack/
 │   └── README.md                   # SwOS configuration, VLANs, management
 ├── server-proxmox-nuc-i5/
 │   └── README.md                   # Proxmox networking, storage, VM layout
-├── server-backup-nuc-alpine/
+├── server-backup-nuc-celeron/
 │   └── README.md                   # Alpine services, backup strategies, mounts
-├── server-rpi3bplus-dietpi/
+├── server-rpi-3bplus/
 │   └── README.md                   # Monitoring stack and DietPi configuration
 └── .gitignore
 ```
