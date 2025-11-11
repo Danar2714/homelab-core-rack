@@ -115,7 +115,7 @@ In the DHCP Setup wizard, `bridge-lan` is selected as the interface on which the
 
 #### 3.2 Defining the DHCP address space and gateway
 
-<img src="../docs/dhcp_address_space.png" alt="DHCP address space configured as 172.16.0.0/24" width="50%" />
+<img src="../docs/dhcp_server2.png" alt="DHCP address space configured as 172.16.0.0/24" width="50%" />
 
 **Figure 11 – DHCP address space**  
 The DHCP scope is defined for the `172.16.0.0/24` network, matching the IP configuration of `bridge-lan`.
