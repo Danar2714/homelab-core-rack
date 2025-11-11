@@ -63,12 +63,11 @@ The physical layout follows a simple SOHO-style stack inside a small rack:
 
 Infraestructure Diagram:
 
-
+![Rack logical diagram](docs/rackDiagram.png)
 
 Infraestructure Photo:
 
-
-
+![Rack physical picture](docs/rackPicture.jpeg)
 
 ---
 
