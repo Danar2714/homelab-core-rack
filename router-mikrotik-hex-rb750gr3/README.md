@@ -156,4 +156,57 @@ The default lease time is set to **30 minutes**, ensuring that unused addresses 
 
 ### 4. NAT configuration
 
-> **Note:** NAT configuration will be documented here using the same structure (screenshots, description, and figure captions) once the outbound masquerade and any additional NAT rules are defined on the router.
+This section configures the router so that the internal LAN `172.16.0.0/24` can access the Internet through the upstream network `192.168.100.0/24` using source NAT (masquerade).
+
+#### 4.1 Creating the masquerade rule
+
+Initially, the NAT table is empty.
+
+<img src="../docs/nat_init_config.png" alt="NAT table initially empty" width="50%" />
+
+**Figure 16 – Empty NAT configuration**  
+No NAT rules are present yet, so LAN clients would not be able to reach external networks.
+
+A new NAT rule is then created under **IP → Firewall → NAT**.
+
+<img src="../docs/nat_rule.png" alt="NAT rule general tab with srcnat chain and ether1 as out interface" width="50%" />
+
+**Figure 17 – NAT rule general settings**  
+On the **General** tab, the rule is configured with `chain=srcnat` and `Out. Interface=ether1`, meaning that all traffic leaving via `ether1` will be subject to source NAT.
+
+<img src="../docs/nat_rule2.png" alt="NAT rule action tab set to masquerade" width="50%" />
+
+**Figure 18 – NAT rule action**  
+On the **Action** tab, the action is set to **masquerade**, so the source IP of LAN packets is replaced by the router’s `ether1` address when going out to the upstream network.
+
+Finally, the NAT rule appears in the NAT table.
+
+<img src="../docs/nat_result.png" alt="NAT table showing the masquerade rule for ether1" width="50%" />
+
+**Figure 19 – Final NAT rule in table**  
+A single **masquerade** rule in the `srcnat` chain, applied to `ether1`, is now active for all outbound traffic.
+
+---
+
+#### 4.2 Configuring DNS resolver on the router
+
+The router is configured to use the upstream gateway and two public resolvers as DNS servers.  
+“Allow Remote Requests” is enabled so LAN clients can use the MikroTik as their DNS forwarder.
+
+<img src="../docs/dns_nat_settings.png" alt="DNS settings with upstream and public DNS servers configured" width="50%" />
+
+**Figure 20 – DNS server configuration**  
+DNS servers `192.168.100.1`, `8.8.8.8`, and `1.1.1.1` are defined, and **Allow Remote Requests** is checked so the router answers DNS queries from the LAN.
+
+---
+
+#### 4.3 Verifying uplink and LAN interfaces
+
+As a final check, the **Address List** shows that the router has one IP address on the LAN bridge and another one on the WAN interface, which is used together with the NAT rule to provide Internet access.
+
+<img src="../docs/nat_interfaces_results.png" alt="Address list showing LAN and WAN addresses after NAT configuration" width="50%" />
+
+**Figure 21 – LAN and WAN IP assignments with NAT**  
+Interface `bridge-lan` is configured with `172.16.0.1/24` for the homelab LAN, and interface `ether1` with `192.168.100.15/24` towards the upstream router `192.168.100.1`.  
+Combined with the masquerade rule, this allows all devices in `172.16.0.0/24` to reach external networks.
+
