@@ -61,10 +61,14 @@ The physical layout follows a simple SOHO-style stack inside a small rack:
 - All servers (Proxmox NUC, backup NUC, Raspberry Pi) are cabled to the RB260GS.
 - One SFP cage is populated with a **MikroTik S-RJ01 copper RJ45 SFP** module for flexible connectivity.
 
-Planned assets:
+Infraestructure Diagram:
 
-- `docs/physical-topology.jpg` – real photo of the rack.
-- `docs/logical-topology.drawio` – logical network diagram.
+
+
+Infraestructure Photo:
+
+
+
 
 ---
 
