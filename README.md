@@ -63,11 +63,11 @@ The physical layout follows a simple SOHO-style stack inside a small rack:
 
 Infraestructure Diagram:
 
-![Rack logical diagram](docs/rackDiagram.png)
+<img src="docs/rackDiagram.png" alt="Homelab rack diagram" width="70%" />
 
 Infraestructure Photo:
 
-![Rack physical picture](docs/rackPicture.jpeg)
+<img src="docs/rackPicture.jpeg" alt="Homelab rack picture" width="70%" />
 
 ---
 
