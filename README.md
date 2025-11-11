@@ -79,9 +79,7 @@ Planned directory structure:
 homelab-core-rack/
 ├── README.md                       # Overview, hardware, cabling, and topology
 ├── docs/
-│   ├── rackjackrj45x8.stl
-│   ├── physical-topology.jpg       # Real photo of the rack (optional)
-│   └── logical-topology.drawio     # Logical topology diagram (optional)
+│   └── (Pictures and extra files)
 ├── router-mikrotik-hex-rb750gr3/
 │   └── README.md                   # Router configuration and design notes
 ├── switch-mikrotik-rb260gs/
