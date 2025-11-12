@@ -1,4 +1,4 @@
-# Switch MikroTik RB260GS (SwOS)
+# Switch MikroTik RB260GS (SwitchOS)
 
 ## A. Basic Configuration
 
