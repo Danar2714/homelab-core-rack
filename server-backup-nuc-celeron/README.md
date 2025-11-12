@@ -1,1 +1,1 @@
-# Backup Server – Intel NUC Celeron (Alpine)
+# Backup Server Intel NUC Celeron (Alpine)
