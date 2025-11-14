@@ -4,8 +4,9 @@
 
 ### 1. Using Optane as Swap
 
-To provide more headroom for running multiple virtual machines and containers, the Intel Optane NVMe module is reused as **high‑priority swap space**.  
-This keeps the main Proxmox installation on the 1 TB HDD while adding a faster swap area on the NVMe device.
+The Intel Optane NVMe module (`/dev/nvme0n1`) is configured as **additional swap space** for the Proxmox host.  
+This provides extra virtual memory for running multiple VMs/containers and, thanks to Optane’s lower latency compared to the HDD, offers faster swap performance.  
+The existing 8 GiB LVM swap is kept, and the Optane swap is given a **higher priority** so the kernel will prefer it.
 
 ---
 
