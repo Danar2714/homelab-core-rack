@@ -15,7 +15,7 @@ The goal is to keep a clean, versioned record of the network and host configurat
 |----------------------------------|-------------------------------------------------------------------------------------------|-------------|-------------------------------------------------------------|
 | MikroTik hEX RB750Gr3           | 5× Gigabit Ethernet ports, hardware NAT, low power consumption                           | RouterOS    | Edge router, gateway, basic firewall and routing           |
 | MikroTik RB260GS (CSS106-5G-1S) | 5× Gigabit Ethernet ports, 1× SFP cage populated with MikroTik S-RJ01 1.25 Gbps RJ45 SFP | SwitchOS       | Core Layer 2 switch for the rack                           |
-| Intel NUC i5                    | 7th Gen Intel i5 CPU, 32 GB DDR4, 1 TB SSD/HDD, 16 GB Intel Optane                       | Proxmox VE  | Main hypervisor for virtual machines and containers        |
+| Intel NUC i5                    | 7th Gen Intel i5 CPU, 32 GB DDR4, 1 TB SSD/HDD, 14 GB Intel Optane                       | Proxmox VE  | Main hypervisor for virtual machines and containers        |
 | Intel NUC Celeron               | Celeron CPU, 4 GB DDR3, 250 GB SSD, 1 TB external USB HDD                                | Alpine Linux| Backup / utility server, additional storage and services   |
 | Raspberry Pi 3 B+               | Quad-core ARM CPU, ~2 GB RAM, 32 GB SSD (root filesystem)                                | DietPi      | Monitoring node (metrics, logging, observability services) |
 
