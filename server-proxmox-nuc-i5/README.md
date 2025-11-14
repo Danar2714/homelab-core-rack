@@ -21,7 +21,7 @@ free -h
 
 <img src="../docs/proxmox_swap_memory.png" alt="Initial swap and memory usage before enabling Optane" width="50%" />
 
-**Figure 1 – Initial swap configuration**  
+**Figure 1 – Listing swap memory**  
 `swapon --show` lists only `/dev/dm-0` (8 GiB) as active swap, and `free -h` confirms a total of 8 GiB swap for the system.
 
 ---
