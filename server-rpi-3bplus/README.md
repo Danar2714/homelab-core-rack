@@ -14,8 +14,6 @@ Tailscale is installed so that any web interface or host inside the lab network 
 Tailscale is installed from the official script and the service is enabled so it starts automatically on boot.
 
 ```bash
-sudo apt update
-sudo apt install curl -y
 curl -fsSL https://tailscale.com/install.sh | sh
 
 sudo systemctl enable tailscaled
@@ -23,33 +21,14 @@ sudo systemctl start tailscaled
 sudo systemctl status tailscaled
 ```
 
-- `apt update` / `apt install` prepare the system and install `curl`.
 - The `install.sh` script adds the Tailscale repository and installs `tailscaled`.
 - `systemctl` is used to enable, start and verify the Tailscale daemon.
 
 ---
 
-#### 1.2 Advertising the homelab subnet
+#### 1.2 Enabling IP forwarding on DietPi
 
-After installation, the node is brought online and configured to advertise the LAN subnet `172.16.0.0/24` so other Tailscale devices can reach machines in that network.
-
-```bash
-sudo tailscale up
-# First-time login in the browser, then:
-
-sudo tailscale up --advertise-routes=172.16.0.0/24 --accept-routes
-```
-
-<img src="../docs/announce_network.png" alt="tailscale up command advertising the 172.16.0.0/24 subnet" width="50%" />
-
-**Figure 1 – Advertising the 172.16.0.0/24 subnet**  
-The `tailscale up` command registers the DietPi node, and the second invocation advertises the `172.16.0.0/24` route with `--advertise-routes` and allows receiving routes from other nodes with `--accept-routes`.
-
----
-
-#### 1.3 Enabling IP forwarding on DietPi
-
-To route traffic between the Tailscale interface and the physical LAN (`eth0`), IP forwarding is enabled for both IPv4 and IPv6.
+Before advertising the LAN subnet through Tailscale, IP forwarding is enabled so the Raspberry Pi can route packets between the Tailscale interface and the physical LAN (`eth0`).
 
 ```bash
 sudo tee /etc/sysctl.conf > /dev/null <<EOF
@@ -62,8 +41,27 @@ sudo sysctl -p
 
 <img src="../docs/ip_foward.png" alt="Enabling IPv4 and IPv6 forwarding via sysctl on DietPi" width="50%" />
 
-**Figure 2 – IP forwarding configuration**  
-`sysctl.conf` is overwritten with forwarding enabled, and `sysctl -p` reloads the settings so the Raspberry Pi can forward packets between Tailscale and the LAN.
+**Figure 1 – IP forwarding configuration**  
+`sysctl.conf` is overwritten with forwarding enabled, and `sysctl -p` reloads the settings so the Raspberry Pi can forward traffic between Tailscale and the LAN.
+
+---
+
+#### 1.3 Bringing the node online and advertising the homelab subnet
+
+With forwarding enabled, the node is brought online and configured to advertise the LAN subnet `172.16.0.0/24` so other Tailscale devices can reach machines in that network.
+
+```bash
+# First-time login in the browser:
+sudo tailscale up
+
+# Then, advertise the homelab subnet:
+sudo tailscale up --advertise-routes=172.16.0.0/24 --accept-routes
+```
+
+<img src="../docs/announce_network.png" alt="tailscale up command advertising the 172.16.0.0/24 subnet" width="50%" />
+
+**Figure 2 – Advertising the 172.16.0.0/24 subnet**  
+The initial `tailscale up` command registers the DietPi node, and the second invocation advertises the `172.16.0.0/24` route with `--advertise-routes` and allows receiving routes from other nodes with `--accept-routes`.
 
 ---
 
