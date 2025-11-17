@@ -46,7 +46,7 @@ The core lab currently uses a single private subnet:
 |----------|------------|----------------------------------|-----------------|
 | `router` | Gateway    | MikroTik hEX RB750Gr3            | `172.16.0.1/24` |
 | `switch` | Core L2    | MikroTik RB260GS (CSS106-5G-1S)  | `172.16.0.2/24` |
-| `backup` | Server     | Intel NUC Celeron                | `172.16.0.3/24` |
+| `backup` | Backup     | Intel NUC Celeron                | `172.16.0.3/24` |
 | `proxmox`| Hypervisor | Intel NUC i5                     | `172.16.0.4/24` |
 | `DietPi`     | Monitoring | Raspberry Pi 3 B+                | `172.16.0.5/24` |
 
