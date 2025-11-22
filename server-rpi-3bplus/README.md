@@ -259,4 +259,111 @@ DBPassword=
 
 ---
 
+### 6. Starting and enabling Zabbix services
+
+Once the database configuration is complete and `zabbix_server.conf` points to the correct credentials, the web server and Zabbix daemons are restarted and enabled to start on boot.
+
+---
+
+#### 6.1 Restarting Apache
+
+After installing the PHP frontend, Apache is restarted so it loads the Zabbix virtual host and PHP configuration.
+
+```bash
+systemctl restart apache2
+```
+
+<img src="../docs/Zabbix/rpi_apache_restart.png" width="50%" />
+
+**Figure 14 – Restarting Apache after Zabbix frontend installation**
+
+---
+
+#### 6.2 Restarting and checking the Zabbix server
+
+```bash
+systemctl restart zabbix-server
+systemctl status zabbix-server
+```
+
+<img src="../docs/Zabbix/rpi_zabbix_server_status.png" width="50%" />
+
+**Figure 15 – Verifying that the Zabbix server is running**
+
+---
+
+#### 6.3 Restarting and checking the Zabbix Agent 2
+
+```bash
+systemctl restart zabbix-agent2
+systemctl status zabbix-agent2
+```
+
+<img src="../docs/Zabbix/rpi_zabbix_agent_status.png" width="50%" />
+
+**Figure 16 – Verifying that Zabbix Agent 2 is running**
+
+---
+
+#### 6.4 Enabling services on boot
+
+```bash
+systemctl enable zabbix-server zabbix-agent2 apache2 mariadb
+```
+
+<img src="../docs/Zabbix/rpi_zabbix_services_enable.png" width="50%" />
+
+**Figure 17 – Enabling Zabbix-related services at boot**
+
+---
+
+### 7. Initial Zabbix web configuration
+
+With all services running, the first login to the Zabbix web interface completes the installation through a guided wizard.
+
+---
+
+#### 7.1 Welcome screen and language selection
+
+<img src="../docs/Zabbix/rpi_zabbix_initial_ui.png" width="50%" />
+
+**Figure 18 – Zabbix 7.0 installer welcome page**
+
+---
+
+#### 7.2 Checking PHP pre-requisites
+
+<img src="../docs/Zabbix/rpi_zabbix_prerequisites_ui.png" width="50%" />
+
+**Figure 19 – PHP prerequisites check**
+
+---
+
+#### 7.3 Configuring the database connection
+
+<img src="../docs/Zabbix/rpi_zabbix_db_connection_ui.png" width="50%" />
+
+**Figure 20 – Database connection parameters**
+
+---
+
+#### 7.4 Setting server details and time zone
+
+<img src="../docs/Zabbix/rpi_zabbix_settings_ui.png" width="50%" />
+
+**Figure 21 – Zabbix server general settings**
+
+---
+
+#### 7.5 Pre-installation summary
+
+<img src="../docs/Zabbix/rpi_zabbix_preinstall_ui.png" width="50%" />
+
+**Figure 22 – Pre-installation configuration summary**
+
+
+
+
+---
+
 
