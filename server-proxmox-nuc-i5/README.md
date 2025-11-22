@@ -105,3 +105,96 @@ free -h
 
 **Figure 6 – Final Optane swap configuration**  
 The system now consistently uses the Optane NVMe (`/dev/nvme0n1`) as high‑priority swap alongside the original 8 GiB LVM swap, providing a total of 21 GiB swap space for Proxmox workloads.
+
+
+---
+
+
+
+## B. Zabbix Agent Configuration
+
+### 1. Installing Zabbix Agent 2 on Proxmox
+
+This Intel NUC i5 runs Proxmox VE on top of Debian and acts as the main hypervisor in the homelab.  
+To integrate it into the Zabbix monitoring stack, **Zabbix Agent 2** is installed and configured to report to the DietPi Zabbix server at `172.16.0.5`.
+
+---
+
+#### 1.1 Enabling the Zabbix repository
+
+First, the official Zabbix repository for Debian 12 is added so that the latest agent packages are available via APT.
+
+```bash
+wget https://repo.zabbix.com/zabbix/7.0/debian/pool/main/z/zabbix-release/zabbix-release_latest_7.0debian12_all.deb
+dpkg -i zabbix-release_latest_7.0debian12_all.deb
+```
+
+<img src="../docs/Zabbix/proxmoxserver_install_zabbix_agent1.png" width="50%" />
+
+**Figure 1 – Adding the Zabbix 7.0 repository on Proxmox**  
+The `zabbix-release` package drops the appropriate `.list` files under `/etc/apt/sources.list.d/`, allowing Proxmox to install Zabbix components directly from the upstream repository.
+
+---
+
+#### 1.2 Installing the agent package
+
+With the repository configured, the Debian package index is refreshed (if needed) and **Zabbix Agent 2** is installed.
+
+```bash
+apt install zabbix-agent2 -y
+```
+
+<img src="../docs/Zabbix/proxmoxserver_install_zabbix_agent2.png" width="50%" />
+
+**Figure 2 – Installing Zabbix Agent 2 on Proxmox**  
+The package installation also creates a `zabbix-agent2` systemd service, which will later be enabled to start automatically with the hypervisor.
+
+---
+
+### 2. Configuring Zabbix Agent 2
+
+The main configuration file is `/etc/zabbix/zabbix_agent2.conf`.  
+As with the backup server, the **Server**, **ServerActive** and **Hostname** parameters are adjusted so the agent can communicate with the central Zabbix server.
+
+---
+
+#### 2.1 Setting server and hostname parameters
+
+```bash
+nano /etc/zabbix/zabbix_agent2.conf
+```
+
+Relevant lines:
+
+```text
+Server=172.16.0.5
+ServerActive=172.16.0.5
+Hostname=Proxmox server
+```
+
+<img src="../docs/Zabbix/proxmoxserver_config_zabbix_agent.png" width="80%" />
+
+**Figure 3 – Zabbix agent configuration on the Proxmox Server**  
+- `Server` lists the IPs allowed to query the agent (passive checks).  
+- `ServerActive` defines where the agent should send active check data.  
+- `Hostname` must match the host name configured later in the Zabbix web interface (e.g. *Proxmox Server*).
+
+---
+
+### 3. Enabling and starting the agent service
+
+With the configuration saved, the `zabbix-agent2` service is enabled in systemd so it starts at boot, restarted to load the new configuration, and its status is verified.
+
+```bash
+systemctl enable zabbix-agent2
+systemctl restart zabbix-agent2
+systemctl status zabbix-agent2
+```
+
+<img src="../docs/Zabbix/proxmoxserver_start_zabbix_agent.png" width="80%" />
+
+**Figure 4 – Starting and enabling Zabbix Agent 2 on Proxmox**  
+The status output confirms that the service is **active (running)** and using `/etc/zabbix/zabbix_agent2.conf`, meaning the hypervisor is now ready to be monitored by the Zabbix server.
+
+---
+
