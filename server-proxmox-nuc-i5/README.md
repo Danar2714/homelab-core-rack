@@ -131,7 +131,7 @@ dpkg -i zabbix-release_latest_7.0debian12_all.deb
 
 <img src="../docs/Zabbix/proxmoxserver_install_zabbix_agent1.png" width="50%" />
 
-**Figure 1 – Adding the Zabbix 7.0 repository on Proxmox**  
+**Figure 7 – Adding the Zabbix 7.0 repository on Proxmox**  
 The `zabbix-release` package drops the appropriate `.list` files under `/etc/apt/sources.list.d/`, allowing Proxmox to install Zabbix components directly from the upstream repository.
 
 ---
@@ -146,7 +146,7 @@ apt install zabbix-agent2 -y
 
 <img src="../docs/Zabbix/proxmoxserver_install_zabbix_agent2.png" width="50%" />
 
-**Figure 2 – Installing Zabbix Agent 2 on Proxmox**  
+**Figure 8 – Installing Zabbix Agent 2 on Proxmox**  
 The package installation also creates a `zabbix-agent2` systemd service, which will later be enabled to start automatically with the hypervisor.
 
 ---
@@ -174,7 +174,7 @@ Hostname=Proxmox server
 
 <img src="../docs/Zabbix/proxmoxserver_config_zabbix_agent.png" width="80%" />
 
-**Figure 3 – Zabbix agent configuration on the Proxmox Server**  
+**Figure 9 – Zabbix agent configuration on the Proxmox Server**  
 - `Server` lists the IPs allowed to query the agent (passive checks).  
 - `ServerActive` defines where the agent should send active check data.  
 - `Hostname` must match the host name configured later in the Zabbix web interface (e.g. *Proxmox Server*).
@@ -193,7 +193,7 @@ systemctl status zabbix-agent2
 
 <img src="../docs/Zabbix/proxmoxserver_start_zabbix_agent.png" width="80%" />
 
-**Figure 4 – Starting and enabling Zabbix Agent 2 on Proxmox**  
+**Figure 10 – Starting and enabling Zabbix Agent 2 on Proxmox**  
 The status output confirms that the service is **active (running)** and using `/etc/zabbix/zabbix_agent2.conf`, meaning the hypervisor is now ready to be monitored by the Zabbix server.
 
 ---
