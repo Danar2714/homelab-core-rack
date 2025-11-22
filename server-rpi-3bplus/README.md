@@ -411,3 +411,57 @@ This indicates the installation and configuration were successful.
 
 ---
 
+### 10. Adding monitored hosts to Zabbix
+
+Once the Zabbix server and dashboard are fully operational, the next step is to add the homelab servers as monitored hosts.  
+**This assumes the Zabbix Agent 2 is already installed and running on each server**, as documented in:
+
+- [homelab-core-rack/server-backup-nuc-celeron/](../server-backup-nuc-celeron/)
+- [homelab-core-rack/server-proxmox-nuc-i5/](../server-proxmox-nuc-i5/)
+
+---
+
+### 10.1 Adding the Backup Server (Intel NUC Celeron)
+
+To register the Backup Server in Zabbix:
+
+1. Go to **Configuration → Hosts → Create host**.
+2. Enter the hostname and visible name (for example, `Backup Server`).
+3. Add the template **Linux by Zabbix agent**.
+4. Assign the host to the **Linux servers** group.
+5. Add an Agent interface pointing to the LAN IP of the backup NUC (e.g. `172.16.0.3`) on port **10050**.
+
+<img src="../docs/Zabbix/rpi_add_backuphost1.png" width="80%" />
+
+**Figure 26 – Creating the Backup Server host entry**  
+The backup server is added with the standard Linux agent template, which provides OS-level metrics such as CPU, memory, filesystem usage, and basic networking.
+
+<img src="../docs/Zabbix/rpi_add_backuphost2.png" width="90%" />
+
+**Figure 27 – Backup Server monitored successfully**  
+Once the agent responds, the host status changes to **Available**, and Zabbix starts collecting metrics and populating items, triggers, and graphs for this server.
+
+---
+
+### 10.2 Adding the Proxmox Server (Intel NUC i5)
+
+The same process is used to add the Proxmox hypervisor:
+
+1. Go to **Configuration → Hosts → Create host**.
+2. Set the hostname and visible name (for example, `Proxmox Server`).
+3. Add the template **Linux by Zabbix agent**.
+4. Assign the host to the **Hypervisors** group.
+5. Configure the Agent interface with the Proxmox LAN IP (e.g. `172.16.0.4`) on port **10050**.
+
+<img src="../docs/Zabbix/rpi_add_proxmoxhost1.png" width="80%" />
+
+**Figure 28 – Creating the Proxmox Server host entry**  
+Grouping the Proxmox node under *Hypervisors* keeps virtualization infrastructure separated from generic Linux servers in the Zabbix UI.
+
+<img src="../docs/Zabbix/rpi_add_proxmoxhost2.png" width="90%" />
+
+**Figure 29 – Proxmox Server monitored successfully**  
+After the agent connection is established, the Proxmox host also appears as **Available**, confirming that the Zabbix server can reach and monitor the hypervisor over the homelab network.
+
+---
+
