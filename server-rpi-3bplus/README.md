@@ -361,9 +361,53 @@ With all services running, the first login to the Zabbix web interface completes
 
 **Figure 22 – Pre-installation configuration summary**
 
+---
 
+### 8. Post‑installation configuration: Housekeeping and dashboard verification
 
+After completing the initial setup, Zabbix provides several administrative options to control database growth, data retention, and overall system behavior. One of the recommended steps is to verify **Housekeeping** settings and confirm that the system dashboard loads correctly.
 
 ---
 
+### 8.1 Accessing Housekeeping settings
+
+Housekeeping controls how long Zabbix stores historical data, events, and internal logs.  
+To access it:
+
+**Administration → Housekeeping**
+
+<img src="../docs/Zabbix/rpi_zabbix_housekeeping_ui1.png" width="40%" />
+
+**Figure 23 – Navigating to Housekeeping settings**  
+This menu contains retention periods for events, alerts, services, user sessions and discovery data.
+
+---
+
+### 8.2 Reviewing default data retention periods
+
+The Housekeeping page displays multiple retention values, which can be customized depending on storage capacity and required historical depth.
+
+<img src="../docs/Zabbix/rpi_zabbix_housekeeping_ui2.png" width="50%" />
+
+**Figure 24 – Default Housekeeping retention values**  
+By default, Zabbix stores events (90 days), service data (7 days), internal data (7 days), discovery results (1 day) and user sessions (30 days). Lowering these values can reduce database size on small systems like Raspberry Pi.
+
+---
+
+### 9. Verifying system status on the global dashboard
+
+Once the installation is complete, Zabbix loads the **Global view** dashboard, summarizing metrics such as host availability, event counts, CPU usage, and server health.
+
+<img src="../docs/Zabbix/rpi_zabbix_result.png" width="90%" />
+
+**Figure 25 – Zabbix Global Dashboard after installation**  
+The dashboard confirms:
+- Zabbix server is running  
+- Frontend is operational  
+- Hosts are being monitored  
+- Basic telemetry (CPU, availability, problems by severity) is functional  
+
+This indicates the installation and configuration were successful.
+
+---
 
