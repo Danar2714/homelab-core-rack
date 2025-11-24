@@ -475,7 +475,7 @@ After the agent connection is established, the Proxmox host also appears as **Av
 
 <img src="../docs/Zabbix/rpi_add_router1.png" width="80%" />
 
-**Figure – Creating the Router hEX RB750Gr3 entry**  
+**Figure 30 – Creating the Router hEX RB750Gr3 entry**  
 The router is added using an **SNMP interface**, since Mikrotik devices expose metrics through their SNMP service.  
 - Template used: **Mikrotik by SNMP**  
 - Host group: **Network devices**  
@@ -485,7 +485,7 @@ This configuration allows Zabbix to retrieve system information, interface stati
 
 <img src="../docs/Zabbix/rpi_add_router2.png" width="90%" />
 
-**Figure – Router monitored successfully**  
+**Figure 31 – Router monitored successfully**  
 Once communication is established, the host shows **SNMP availability** in green.  
 Zabbix begins populating items and graphing interface traffic, CPU load and device health.
 
@@ -495,7 +495,7 @@ Zabbix begins populating items and graphing interface traffic, CPU load and devi
 
 <img src="../docs/Zabbix/rpi_add_switch1.png" width="80%" />
 
-**Figure – Creating the Switch RB260GS entry**  
+**Figure 32 – Creating the Switch RB260GS entry**  
 The RB260GS switch is also monitored via SNMP.  
 - Template: **Mikrotik by SNMP**  
 - Host group: **Network devices**  
@@ -505,7 +505,7 @@ Since RB260GS is a simple Smart Switch, SNMP provides metrics such as interface 
 
 <img src="../docs/Zabbix/rpi_add_switch2.png" width="90%" />
 
-**Figure – Switch monitored successfully**  
+**Figure 33 – Switch monitored successfully**  
 The switch appears as **Available (SNMP)**, confirming Zabbix can poll it successfully.  
 Graphing and item updates begin immediately using the Mikrotik SNMP template.
 
