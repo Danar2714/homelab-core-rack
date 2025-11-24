@@ -34,3 +34,36 @@ At the bottom of the same **System** page, SwOS provides a section to change the
 **Figure 2 – Password and backup configuration**  
 The factory default password is replaced with a strong custom password in the **Password Change** section.  
 Below, the **Backup** section is used to download a copy of the running configuration once the initial setup is complete, so that the switch can be quickly restored or cloned in case of lab changes or failures.
+
+---
+
+## B. SNMP Configuration
+
+This section covers the SNMP setup required for Zabbix to monitor the **MikroTik RB260GS (SwOS)**.  
+SNMP must be enabled and a community string configured so the Zabbix server can query metrics from the switch.
+
+---
+
+### 1. Enabling SNMP and defining the community
+
+SwOS exposes its SNMP configuration under the **SNMP** tab in the web interface.
+
+<img src="../docs/switch_snmp_settings.png" width="60%" />
+
+**Figure 22 – SNMP configuration in SwOS**
+
+The following parameters are configured:
+
+- **Enabled:**  SNMP service is turned on.  
+- **Community:** `zabbix`  
+  This must match the community string configured in the Zabbix host settings.
+- **Contact Info:** `Admin`  
+  Informational field for device identification.
+- **Location:** `Homelab`  
+  Indicates the physical/logical placement of the device.
+
+These values allow the Zabbix server at **172.16.0.5** (configured earlier in the host section) to access the switch metrics over SNMPv2.
+
+SwOS does not require specifying an SNMP allowed-address list; access control is handled implicitly via the LAN topology.
+
+----
