@@ -48,7 +48,7 @@ SNMP must be enabled and a community string configured so the Zabbix server can 
 
 SwOS exposes its SNMP configuration under the **SNMP** tab in the web interface.
 
-<img src="../docs/switch_snmp_settings.png" width="60%" />
+<img src="../docs/Zabbix/switch_snmp_settings.png" width="60%" />
 
 **Figure 22 – SNMP configuration in SwOS**
 
