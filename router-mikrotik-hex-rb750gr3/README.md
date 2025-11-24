@@ -210,3 +210,58 @@ As a final check, the **Address List** shows that the router has one IP address 
 Interface `bridge-lan` is configured with `172.16.0.1/24` for the homelab LAN, and interface `ether1` with `192.168.100.15/24` towards the upstream router `192.168.100.1`.  
 Combined with the masquerade rule, this allows all devices in `172.16.0.0/24` to reach external networks.
 
+---
+
+## B. SNMP Configuration
+
+### 1. Enabling SNMP Service
+
+SNMP is enabled on the router to allow Zabbix to query system information, interface counters, and device health.  
+The configuration is performed from **WinBox → IP → SNMP**.
+
+<img src="../docs/Zabbix/router_snmp_settings.png" width="50%" />
+
+**Figure 22 – Enabling SNMP service and general settings**  
+The SNMP service is enabled, and optional fields such as *Contact* and *Location* are filled to provide identifying information in monitoring systems.  
+`Trap Version` and other trap-related fields are left at default because Zabbix uses **polling**, not traps.
+
+
+---
+
+### 2. Creating the SNMP Community
+
+An SNMP community named **zabbix** is created.  
+This acts as the “password” that allows the Zabbix server to read SNMP data from the router.
+
+<img src="../docs/Zabbix/router_snmp_community.png" width="55%" />
+
+**Figure 23 – SNMP community configuration**  
+- **Name:** `zabbix`  
+- **Addresses:** `172.16.0.5` (IP of the Zabbix server)  
+- **Read Access:** enabled  
+- **Write Access:** disabled (recommended for security)  
+- **Security:** none (SNMPv2, no authentication)  
+- Authentication and encryption fields are unused unless SNMPv3 is configured.
+
+Restricting access to the Zabbix server IP minimizes exposure of the SNMP service.
+
+
+---
+
+### 3. Verifying SNMP Communities
+
+The list of configured SNMP communities appears under **IP → SNMP → Communities**.
+
+<img src="../docs/Zabbix/router_snmp_communities.png" width="70%" />
+
+**Figure 24 – SNMP communities overview**  
+The new community `zabbix` is listed with:
+- **Address Filter:** `172.16.0.5`  
+- **Security:** none  
+- **Read Access:** yes  
+- **Write Access:** no  
+
+This confirms that the router will accept SNMP requests **only** from the Zabbix server at `172.16.0.5`, using the community string `zabbix`.
+
+---
+
