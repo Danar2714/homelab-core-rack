@@ -411,13 +411,19 @@ This indicates the installation and configuration were successful.
 
 ---
 
-### 10. Adding monitored hosts to Zabbix
+# 10. Adding monitored hosts to Zabbix
 
 Once the Zabbix server and dashboard are fully operational, the next step is to add the homelab servers as monitored hosts.  
 **This assumes the Zabbix Agent 2 is already installed and running on each server**, as documented in:
 
 - [homelab-core-rack/server-backup-nuc-celeron/](../server-backup-nuc-celeron/)
 - [homelab-core-rack/server-proxmox-nuc-i5/](../server-proxmox-nuc-i5/)
+
+Additionally, **this assumes that SNMP is already configured on the network devices**, as documented in:
+
+- [homelab-core-rack/router-mikrotik-hex-rb750gr3/](../router-mikrotik-hex-rb750gr3/)
+- [homelab-core-rack/switch-mikrotik-rb260gs/](../switch-mikrotik-rb260gs/)
+
 
 ---
 
